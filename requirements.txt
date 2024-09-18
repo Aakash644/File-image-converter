@@ -7,4 +7,4 @@ pdfkit
 pandas
 docx
 pdf2docx
-
+pytest

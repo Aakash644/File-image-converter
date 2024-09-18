@@ -10,7 +10,7 @@ from docx import Document
 from pdf2docx import Converter
 
 
-tinify.key = "api_key"
+tinify.key = "{{TINIFY}}"
 
 app = Flask(__name__)
 

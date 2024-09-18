@@ -1,0 +1,10 @@
+flask
+PyPDF2
+tinify
+Pillow
+docx2pdf
+pdfkit
+pandas
+docx
+pdf2docx
+

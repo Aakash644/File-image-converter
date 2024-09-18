@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Resizer</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .nav-brand,.nav-link:hover{
+          color: orange !important;
+          font-weight: 700!important;
+        }
+        body {
+            
+            background-color: #f8f9fa;
+            font-weight: 700;
+        }
+       
+      
+  
+
+.custom-file-upload {
+    font-size: 20px;
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.custom-file-upload:hover {
+    background-color: orange;
+}
+
+#fileInput {
+    display: none; /* Hide default file input */
+}
+
+    </style>
+</head>
+<body>
+     <!-- Navbar -->
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/"><h3>Converto</h3></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/fileconverter">File Converter</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/imageconverter">Image Converter</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/imageresizer">Image Resizer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/imagecompressor">Image Compressor</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+   
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+              <h3>Image Compressor</h3>  
+              <p>Compress images such as Png, jpg, webp</p>
+            </div>
+            <div class="card-body">
+                <form action="/uploadimagecompressor" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        
+                            <label for="fileInput" class="custom-file-upload">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" color="white" fill="currentColor" class="bi bi-file-earmark-pdf" viewBox="0 0 16 16">
+                                    <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
+                                    <path d="M4.603 14.087a.8.8 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.7 7.7 0 0 1 1.482-.645 20 20 0 0 0 1.062-2.227 7.3 7.3 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a11 11 0 0 0 .98 1.686 5.8 5.8 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.86.86 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.7 5.7 0 0 1-.911-.95 11.7 11.7 0 0 0-1.997.406 11.3 11.3 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.8.8 0 0 1-.58.029m1.379-1.901q-.25.115-.459.238c-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361q.016.032.026.044l.035-.012c.137-.056.355-.235.635-.572a8 8 0 0 0 .45-.606m1.64-1.33a13 13 0 0 1 1.01-.193 12 12 0 0 1-.51-.858 21 21 0 0 1-.5 1.05zm2.446.45q.226.245.435.41c.24.19.407.253.498.256a.1.1 0 0 0 .07-.015.3.3 0 0 0 .094-.125.44.44 0 0 0 .059-.2.1.1 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a4 4 0 0 0-.612-.053zM8.078 7.8a7 7 0 0 0 .2-.828q.046-.282.038-.465a.6.6 0 0 0-.032-.198.5.5 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822q.036.167.09.346z"/>
+                                  </svg> <b>Choose Files</b>
+                            </label>
+                            <input type="file" name="image" onChange="updateFileName()" id="fileInput">
+                            <span id="fileName">No file selected</span> 
+                          <span id="imageSize" style="color:blue"></span> 
+                    </div>
+
+                    <button type="submit" class="btn btn-primary " >Compress Image</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% if download_link %}
+    <div class="container mt-3">
+        <div class="card">
+            <div class="card-body">
+                <a href="{{ download_link }}" class="btn btn-success" role="button" download>Download Converted File</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    
+    <script>
+        function updateFileName() {
+            const fileInput = document.getElementById('fileInput');
+            const fileName = document.getElementById('fileName');
+            fileName.textContent = fileInput.files[0] ? fileInput.files[0].name : 'No file selected';
+        }
+        </script>
+
+<script>
+    document.getElementById('fileInput').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        const fileSize = file.size;
+        const fileSizeKB = fileSize / 1024; // Convert bytes to kilobytes
+        const fileSizeMB = fileSizeKB / 1024; // Convert kilobytes to megabytes
+        document.getElementById('imageSize').innerText = `Size: ${fileSizeKB.toFixed(2)} KB`;
+    });
+</script>
+
+     <!-- Bootstrap JS -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ 
+</body>
+</html>
